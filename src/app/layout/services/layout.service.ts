@@ -1,12 +1,12 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject} from 'rxjs';
 import {Event, NavigationEnd, Router} from '@angular/router';
-import {NavItem} from '../../../_models/navItems';
+import {NavItem} from '../../../_models/layout';
 
 @Injectable({
   providedIn: 'root'
 })
-export class NavBarService {
+export class LayoutService {
 
   public appDrawer: any;
   public currentUrl = new BehaviorSubject<string>(undefined);
@@ -20,7 +20,9 @@ export class NavBarService {
   }
 
   public closeNav() {
-    this.appDrawer.close();
+    if (this.appDrawer) {
+      this.appDrawer.close();
+    }
   }
 
   public openNav() {

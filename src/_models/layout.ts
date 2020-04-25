@@ -5,3 +5,8 @@ export interface NavItem {
   route?: string;
   children?: NavItem[];
 }
+
+export interface Layout {
+  navBar: boolean;
+  footer: boolean;
+}

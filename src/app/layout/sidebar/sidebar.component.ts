@@ -1,13 +1,13 @@
 import {Component, HostBinding, Input, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
 import {animate, state, style, transition, trigger} from '@angular/animations';
-import {NavItem} from '../../../_models/navItems';
-import {NavBarService} from '../services/nav-bar.service';
+import {LayoutService} from '../services/layout.service';
+import {Router} from '@angular/router';
+import {NavItem} from '../../../_models/layout';
 
 @Component({
-  selector: 'app-menu-list-item',
-  templateUrl: './menu-list-item.component.html',
-  styleUrls: ['./menu-list-item.component.scss'],
+  selector: 'app-sidebar',
+  templateUrl: './sidebar.component.html',
+  styleUrls: ['./sidebar.component.scss'],
   animations: [
     trigger('indicatorRotate', [
       state('collapsed', style({transform: 'rotate(0deg)'})),
@@ -18,13 +18,15 @@ import {NavBarService} from '../services/nav-bar.service';
     ])
   ]
 })
-export class MenuListItemComponent implements OnInit {
+
+export class SidebarComponent implements OnInit {
+
   expanded: boolean;
   @HostBinding('attr.aria-expanded') ariaExpanded = this.expanded;
   @Input() item: NavItem;
   @Input() depth: number;
 
-  constructor(public navService: NavBarService,
+  constructor(public navService: LayoutService,
               public router: Router) {
     if (this.depth === undefined) {
       this.depth = 0;
@@ -51,4 +53,5 @@ export class MenuListItemComponent implements OnInit {
       this.expanded = !this.expanded;
     }
   }
+
 }

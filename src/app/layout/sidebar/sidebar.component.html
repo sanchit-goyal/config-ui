@@ -1,15 +1,15 @@
 <a [disabled]="item.disabled"
-  mat-list-item [ngStyle]="{'padding-left': (depth * 10) + 'px'}" (click)="onItemSelected(item)"
-  [ngClass]="{'active': item.route ? router.isActive(item.route, true): false, 'expanded': expanded}"
-  class="menu-list-item">
+   mat-list-item [ngStyle]="{'padding-left': (depth * 10) + 'px'}" (click)="onItemSelected(item)"
+   [ngClass]="{'active': item.route ? router.isActive(item.route, true): false, 'expanded': expanded}"
+   class="menu-list-item">
 
   <mat-icon *ngIf="item && item.iconName && !item.iconName.startsWith('custom') else custom"
-    class="routeIcon">{{item.iconName}}
+            class="routeIcon">{{item.iconName}}
   </mat-icon>
   <ng-template #custom>
     <mat-icon #custom class="routeIcon" [svgIcon]="item.iconName"></mat-icon>
   </ng-template>
-  <span [innerHTML]="item.displayName" ></span>
+  <span [innerHTML]="item.displayName"></span>
   <span fxFlex *ngIf="item.children && item.children.length">
     <span fxFlex></span>
     <mat-icon [@indicatorRotate]="expanded ? 'expanded': 'collapsed'">
@@ -18,6 +18,6 @@
   </span>
 </a>
 <div *ngIf="expanded">
-  <app-menu-list-item *ngFor="let child of item.children" [item]="child" [depth]="depth+1">
-  </app-menu-list-item>
+  <app-sidebar *ngFor="let child of item.children" [item]="child" [depth]="depth+1">
+  </app-sidebar>
 </div>

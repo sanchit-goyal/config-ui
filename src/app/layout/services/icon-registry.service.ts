@@ -8,10 +8,10 @@ import {DomSanitizer} from '@angular/platform-browser';
 export class IconRegistryService {
 
   constructor(private iconRegistry: MatIconRegistry, private sanitizer: DomSanitizer) {
-    this.registerIcons();
+    // this.registerIcons();
   }
 
-  registerIcons() {
+  public registerIcons() {
     Icon.iconsToRegister().forEach(icon => this.registerIcon(icon));
   }
 

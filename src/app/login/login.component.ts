@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     localStorage.setItem(Constants.USER, JSON.stringify(this.getUser()));
-    this.router.navigate(['/home']);
+    this.router.navigate(['/about']);
   }
 
   getUser(): User {
