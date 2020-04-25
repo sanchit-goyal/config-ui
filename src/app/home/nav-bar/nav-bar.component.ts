@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, ViewChild} from '@angular/core';
 import {NavItem} from '../../../_models/navItems';
 import {VERSION} from '@angular/material/core';
 import {NavBarService} from '../services/nav-bar.service';
@@ -8,7 +8,7 @@ import {NavBarService} from '../services/nav-bar.service';
   templateUrl: './nav-bar.component.html',
   styleUrls: ['./nav-bar.component.scss']
 })
-export class NavBarComponent implements OnInit {
+export class NavBarComponent implements AfterViewInit {
 
   @ViewChild('appDrawer') appDrawer: ElementRef;
   version = VERSION;
@@ -18,7 +18,8 @@ export class NavBarComponent implements OnInit {
     this.navItems = navBarService.getNavItems();
   }
 
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
+    this.navBarService.appDrawer = this.appDrawer;
   }
 
 }
