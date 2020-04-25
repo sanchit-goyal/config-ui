@@ -20,9 +20,9 @@ export class LayoutService {
   }
 
   public closeNav() {
-    if (this.appDrawer) {
+//    if (this.appDrawer) {
       this.appDrawer.close();
-    }
+  //  }
   }
 
   public openNav() {
