@@ -35,75 +35,53 @@ export class NavBarService {
 class Test {
   static navItems: NavItem[] = [
     {
-      displayName: 'DevFestFL',
-      iconName: 'recent_actors',
-      route: 'devfestfl',
+      displayName: 'About',
+      iconName: 'myself',
+      route: 'about',
       children: [
         {
-          displayName: 'Speakers',
-          iconName: 'group',
-          route: 'devfestfl/speakers',
+          displayName: '10<sup>Th</sup>',
+          iconName: 'school',
+          route: 'about/tenth',
         },
         {
-          displayName: 'Sessions',
-          iconName: 'speaker_notes',
-          route: 'devfestfl/sessions',
+          displayName: '12<sup>Th</sup>',
+          iconName: 'school',
+          route: 'about/twelfth',
         },
         {
-          displayName: 'Feedback',
-          iconName: 'feedback',
-          route: 'devfestfl/feedback'
+          displayName: 'Graduation',
+          iconName: 'college',
+          route: 'about/graduations'
         }
       ]
     },
     {
-      displayName: 'Disney',
-      iconName: 'videocam',
+      displayName: 'ConfigTool',
+      disabled: false,
+      iconName: 'custom_fingerprint',
+      route: '',
     },
     {
-      displayName: 'Orlando',
-      iconName: 'movie_filter',
-    },
-    {
-      displayName: 'Maleficent',
+      displayName: 'Outbound',
       disabled: true,
-      iconName: 'report_problem',
+      iconName: 'people',
+      route: '',
+    },
+    {
+      displayName: 'feedProcessor',
+      iconName: '',
       children: [
         {
-          displayName: 'Speakers',
-          iconName: 'group',
+          displayName: 'Reprocess',
+          iconName: '',
+          route: '',
         },
         {
-          displayName: 'Sessions',
-          iconName: 'speaker_notes',
-          children: [
-            {
-              displayName: 'Create Enterprise UIs',
-              iconName: 'star_rate',
-              route: 'material-design'
-            },
-            {
-              displayName: 'What\'s up with the Web?',
-              iconName: 'star_rate',
-              route: 'what-up-web'
-            },
-            {
-              displayName: 'My ally, the CLI',
-              iconName: 'star_rate',
-              route: 'my-ally-cli'
-            },
-            {
-              displayName: 'Become an Angular Tailor',
-              iconName: 'star_rate',
-              route: 'become-angular-tailer'
-            }
-          ]
+          displayName: 'Show Status',
+          iconName: '',
+          route: '',
         },
-        {
-          displayName: 'Feedback',
-          iconName: 'feedback',
-          route: 'feedback'
-        }
       ]
     }
   ];
