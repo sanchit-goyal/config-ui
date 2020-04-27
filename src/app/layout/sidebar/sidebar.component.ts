@@ -2,7 +2,7 @@ import {Component, HostBinding, Input, OnInit} from '@angular/core';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import {LayoutService} from '../services/layout.service';
 import {Router} from '@angular/router';
-import {NavItem} from '../../../_models/layout';
+import {SideNavigation} from '../../../_models/layout';
 
 @Component({
   selector: 'app-sidebar',
@@ -20,10 +20,9 @@ import {NavItem} from '../../../_models/layout';
 })
 
 export class SidebarComponent implements OnInit {
-
   expanded: boolean;
   @HostBinding('attr.aria-expanded') ariaExpanded = this.expanded;
-  @Input() item: NavItem;
+  @Input() item: SideNavigation;
   @Input() depth: number;
 
   constructor(public navService: LayoutService,
@@ -44,7 +43,7 @@ export class SidebarComponent implements OnInit {
     });
   }
 
-  onItemSelected(item: NavItem) {
+  onItemSelected(item: SideNavigation) {
     if (!item.children || !item.children.length) {
       this.router.navigate([item.route]);
       this.navService.closeNav();
@@ -54,4 +53,7 @@ export class SidebarComponent implements OnInit {
     }
   }
 
+  useCustomIcon(item: SideNavigation): boolean {
+    return item?.iconName?.startsWith('custom') === true;
+  }
 }

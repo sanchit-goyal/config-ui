@@ -1,17 +1,31 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
-    <button mat-icon-button>
+    <button *ngIf="sideBar" mat-icon-button>
       <mat-icon (click)="appDrawer.toggle()">menu</mat-icon>
     </button>
     <h1>Tortoise Analytics</h1>
     <span class="menu-spacer"></span>
+    <div>
+      <mat-nav-list>
+        <ng-template ngFor let-item [ngForOf]="topNavItems">
+          <a mat-button [routerLink]="item.route">{{item.name}}</a>
+        </ng-template>
+      </mat-nav-list>
+    </div>
   </mat-toolbar-row>
 </mat-toolbar>
 
-<mat-sidenav-container>
+
+<div fxLayout="row" fxFlex="100">
+  <div class="content" fxLayout="column" fxFlex>
+    <router-outlet *ngIf="!sideBar"></router-outlet>
+  </div>
+</div>
+
+<mat-sidenav-container *ngIf="sideBar">
   <mat-sidenav #appDrawer mode="side" opened>
     <mat-nav-list>
-      <app-sidebar *ngFor="let item of navItems" [item]="item"></app-sidebar>
+      <app-sidebar *ngFor="let item of sideNavItems" [item]="item"></app-sidebar>
     </mat-nav-list>
   </mat-sidenav>
   <router-outlet></router-outlet>

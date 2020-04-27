@@ -1,12 +1,19 @@
-export interface NavItem {
+export interface SideNavigation {
   displayName: string;
   disabled?: boolean;
   iconName: string;
   route?: string;
-  children?: NavItem[];
+  children?: SideNavigation[];
+}
+
+export interface TopNavigation {
+  name: string;
+  route: string;
 }
 
 export interface Layout {
-  navBar: boolean;
+  header: boolean;
+  sidebar: boolean;
   footer: boolean;
 }
+

@@ -3,12 +3,9 @@
    [ngClass]="{'active': item.route ? router.isActive(item.route, true): false, 'expanded': expanded}"
    class="menu-list-item">
 
-  <mat-icon *ngIf="item && item.iconName && !item.iconName.startsWith('custom') else custom"
-            class="routeIcon">{{item.iconName}}
-  </mat-icon>
-  <ng-template #custom>
-    <mat-icon #custom class="routeIcon" [svgIcon]="item.iconName"></mat-icon>
-  </ng-template>
+  <mat-icon *ngIf=useCustomIcon(item) class="routeIcon">{{item.iconName}}</mat-icon>
+  <mat-icon *ngIf=useCustomIcon(item) class="routeIcon" [svgIcon]="item.iconName"></mat-icon>
+
   <span [innerHTML]="item.displayName"></span>
   <span fxFlex *ngIf="item.children && item.children.length">
     <span fxFlex></span>

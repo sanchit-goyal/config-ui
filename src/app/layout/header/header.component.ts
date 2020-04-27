@@ -1,7 +1,8 @@
-import {AfterViewInit, Component, ElementRef, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, Input, ViewChild} from '@angular/core';
 import {VERSION} from '@angular/material/core';
 import {LayoutService} from '../services/layout.service';
-import {NavItem} from '../../../_models/layout';
+import {SideNavigation, TopNavigation} from '../../../_models/layout';
+import {MatSidenav} from '@angular/material/sidenav';
 
 @Component({
   selector: 'app-header',
@@ -10,16 +11,21 @@ import {NavItem} from '../../../_models/layout';
 })
 export class HeaderComponent implements AfterViewInit {
 
-  @ViewChild('appDrawer') appDrawer: ElementRef;
+  @Input() sideBar: boolean;
+  @ViewChild('appDrawer') appDrawer: MatSidenav;
   version = VERSION;
-  navItems: NavItem[];
+  topNavItems: TopNavigation[];
+  sideNavItems: SideNavigation[];
 
   constructor(private layoutService: LayoutService) {
-    this.navItems = this.layoutService.getNavItems();
+    this.sideNavItems = this.layoutService.getSideNavigationBarItems();
+    this.topNavItems = this.layoutService.getTopNavigationBatItems();
   }
 
   ngAfterViewInit(): void {
-    this.layoutService.appDrawer = this.appDrawer;
+    if (this.sideBar) {
+      this.layoutService.appDrawer = this.appDrawer;
+    }
   }
 
 }

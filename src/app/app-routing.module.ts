@@ -14,7 +14,8 @@ const routes: Routes = [
     loadChildren: () => import('./login/login.module').then(m => m.LoginModule),
     data: {
       layout: {
-        navBar: false,
+        header: true,
+        sidebar: false,
         footer: true,
       }
     },

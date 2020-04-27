@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject} from 'rxjs';
 import {Event, NavigationEnd, Router} from '@angular/router';
-import {NavItem} from '../../../_models/layout';
+import {SideNavigation, TopNavigation} from '../../../_models/layout';
 
 @Injectable({
   providedIn: 'root'
@@ -20,71 +20,118 @@ export class LayoutService {
   }
 
   public closeNav() {
-//    if (this.appDrawer) {
-      this.appDrawer.close();
-  //  }
+    this.appDrawer.close();
   }
 
   public openNav() {
     this.appDrawer.open();
   }
 
-  public getNavItems(): NavItem[] {
-    return Test.navItems;
+  public getSideNavigationBarItems(): SideNavigation[] {
+    return Navigations.sideNavigationBar;
+  }
+
+  public getTopNavigationBatItems(): TopNavigation[] {
+    return Navigations.topNavigationBar;
   }
 }
 
-class Test {
-  static navItems: NavItem[] = [
+class Navigations {
+
+  static header = 'Tortoise Analytics';
+
+  static sideNavigationBar: SideNavigation[] = [
     {
-      displayName: 'About',
-      iconName: 'myself',
-      route: 'about',
+      displayName: 'Java',
+      iconName: 'java',
+      route: 'Java',
       children: [
         {
-          displayName: '10<sup>Th</sup>',
-          iconName: 'school',
-          route: 'about/tenth',
+          displayName: 'versions',
+          iconName: '',
+          route: 'java/version',
+          children: [
+            {
+              displayName: 'Java 14',
+              iconName: '',
+              route: 'java/version/java14',
+            },
+            {
+              displayName: 'Java 13',
+              iconName: '',
+              route: 'java/version/java13',
+            }
+          ],
         },
         {
-          displayName: '12<sup>Th</sup>',
-          iconName: 'school',
-          route: 'about/twelfth',
+          displayName: 'Spring Boot',
+          iconName: '',
+          route: 'java/springBoot',
+          children: [
+            {
+              displayName: 'getting started',
+              iconName: '',
+              route: 'java/springBoot/gettingStarted'
+            }
+          ],
         },
-        {
-          displayName: 'Graduation',
-          iconName: 'college',
-          route: 'about/graduations'
-        }
       ]
     },
     {
-      displayName: 'ConfigTool',
-      disabled: false,
-      iconName: 'custom_fingerprint',
-      route: '',
-    },
-    {
-      displayName: 'Outbound',
+      displayName: 'Python',
       disabled: true,
-      iconName: 'people',
-      route: '',
-    },
-    {
-      displayName: 'feedProcessor',
       iconName: '',
+      route: 'Python',
       children: [
         {
-          displayName: 'Reprocess',
+          displayName: 'Django',
           iconName: '',
-          route: '',
+          route: 'python/django',
         },
         {
-          displayName: 'Show Status',
+          displayName: 'Flask',
           iconName: '',
-          route: '',
+          route: 'python/flask'
+        },
+      ],
+    },
+    {
+      displayName: 'JavaScript',
+      disabled: true,
+      iconName: 'js',
+      route: 'JavaScript',
+    },
+    {
+      displayName: 'Machine Learning',
+      iconName: '',
+      route: 'MachineLearning',
+      children: [
+        {
+          displayName: 'Supervised Learning',
+          iconName: '',
+          route: 'MachineLearning/SupervisedLearning',
+        },
+        {
+          displayName: 'Unsupervised Learning',
+          iconName: '',
+          route: 'machineLearning/UnsupervisedLearning',
+        },
+        {
+          displayName: 'Reinforcement Learning',
+          iconName: '',
+          route: 'machineLearning/ReinforcementLearning',
         },
       ]
+    }
+  ];
+
+  static topNavigationBar: TopNavigation[] = [
+    {
+      name: 'about1',
+      route: 'about',
+    }, {
+      name: 'about2',
+      route: 'about',
     }
   ];
 

@@ -11,7 +11,7 @@ import {Layout} from '../_models/layout';
 export class AppComponent implements OnInit {
   title = 'config-ui';
   // defining default layout
-  layout: Layout = {navBar: true, footer: true,};
+  layout: Layout = AppComponent.getDefaultLayout();
 
   constructor(private router: Router,
               private activatedRoute: ActivatedRoute,
@@ -19,11 +19,23 @@ export class AppComponent implements OnInit {
     this.iconRegistryService.registerIcons();
   }
 
+  private static getDefaultLayout(): Layout {
+    return {
+      header: true,
+      sidebar: true,
+      footer: true,
+    };
+  }
+
   ngOnInit(): void {
     this.router.events.subscribe(event => {
-      if (event instanceof NavigationEnd && this.activatedRoute.firstChild.snapshot.data.layout) {
-        this.layout = this.activatedRoute.firstChild.snapshot.data.layout;
+      if (event instanceof NavigationEnd) {
+        this.layout =
+          this.activatedRoute.firstChild.snapshot.data.layout
+            ? this.activatedRoute.firstChild.snapshot.data.layout
+            : AppComponent.getDefaultLayout();
       }
     });
   }
+
 }
